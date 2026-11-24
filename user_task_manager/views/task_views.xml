@@ -1,0 +1,60 @@
+<odoo>
+<!--https://www.youtube.com/watch?v=QXJCCo9bQC0-->
+    <record id="view_user_task_form" model="ir.ui.view">
+        <field name="name">user.task.form</field>
+        <field name="model">user.task</field>
+        <field name="arch" type="xml">
+            <form string="Tareas de Usuario">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                        <field name="priority"/>
+                        <field name="state"/>
+                        <field name="deadline"/>
+                        <field name="user_id" readonly="1"/>
+                        <field name="is_done" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_user_task_list" model="ir.ui.view">
+        <field name="name">user.task.tree</field>
+        <field name="model">user.task</field>
+        <field name="arch" type="xml">
+            <tree string="Tareas de usuario">
+                <field name="name"/>
+                <field name="priority"/>
+                <field name="state"/>
+                <field name="deadline"/>
+                <field name="is_done" readonly="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_user_task" model="ir.actions.act_window">
+        <field name="name">Tareas de usuario</field>
+        <field name="res_model">user.task</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Gestiona tus tareas asignadas. Puedes ver tus propias tareas y sus detalles.
+            </p>
+        </field>
+    </record>
+
+    <menuitem
+        id="menu_user_task_root"
+        name="Tareas de Usuario"
+        sequence="10"
+    />
+    <menuitem
+        id="menu_user_task"
+        name="Mis Tareas"
+        parent="menu_user_task_root"
+        action="action_user_task"
+        sequence="20"
+    />
+</odoo>
